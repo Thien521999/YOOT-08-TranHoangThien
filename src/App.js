@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// libs
+import { useState } from "react";
+// components
+import RandomNumber from "./components/RandomNumber";
+import ResultRandom from "./components/ResultRandom";
+// others
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [numberList, setNumberList] = useState([]);
+  const [result, setResult] = useState(0);
+
+  const onRandomNumber = (values) => {
+    console.log(values);
+    numberList.push(values);
+    setNumberList(numberList);
+    setResult(numberList.reduce((sum, number) => sum + number, 0));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RandomNumber onRandomNumber={onRandomNumber} />
+      <ResultRandom numberList={numberList} result={result} />
     </div>
   );
-}
+};
 
 export default App;
