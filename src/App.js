@@ -11,7 +11,6 @@ const App = () => {
   const [result, setResult] = useState(0);
 
   const onRandomNumber = (values) => {
-    console.log(values);
     numberList.push(values);
     setNumberList(numberList);
     setResult(numberList.reduce((sum, number) => sum + number, 0));
